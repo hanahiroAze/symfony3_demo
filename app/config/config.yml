@@ -62,16 +62,16 @@ twig:
 doctrine:
     dbal:
         # if you don't want to use SQLite, comment the two following lines
-        driver: "pdo_sqlite"
-        path: "%kernel.root_dir%/data/blog.sqlite"
+#        driver: "pdo_sqlite"
+#        path: "%kernel.root_dir%/data/blog.sqlite"
         # uncomment the following lines to use a database different than SQLite
-        # driver:   pdo_mysql
-        # host:     "%database_host%"
-        # port:     "%database_port%"
-        # dbname:   "%database_name%"
-        # user:     "%database_user%"
-        # password: "%database_password%"
-        # charset:  UTF8
+         driver:   pdo_mysql
+         host:     "%database_host%"
+         port:     "%database_port%"
+         dbname:   "%database_name%"
+         user:     "%database_user%"
+         password: "%database_password%"
+         charset:  UTF8
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
