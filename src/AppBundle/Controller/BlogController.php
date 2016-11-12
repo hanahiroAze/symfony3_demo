@@ -34,13 +34,14 @@ use AppBundle\Form\CommentType;
 class BlogController extends Controller
 {
     /**
-     * @Route("/", defaults={"page": 1}, name="blog_index")
+     * @Route("/", defaults={"page": "1"}, name="blog_index")
      * @Route("/page/{page}", requirements={"page": "[1-9]\d*"}, name="blog_index_paginated")
      * @Method("GET")
      * @Cache(smaxage="10")
      */
     public function indexAction($page)
     {
+        dump($page);
         $posts = $this->getDoctrine()->getRepository(Post::class)->findLatest($page);
 
         return $this->render('blog/index.html.twig', ['posts' => $posts]);
