@@ -18,6 +18,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,13 +39,15 @@ class BlogController extends Controller
      * @Route("/page/{page}", requirements={"page": "[1-9]\d*"}, name="blog_index_paginated")
      * @Method("GET")
      * @Cache(smaxage="10")
+     * @Template("blog/index.html.twig")
      */
     public function indexAction($page)
     {
         dump($page);
         $posts = $this->getDoctrine()->getRepository(Post::class)->findLatest($page);
 
-        return $this->render('blog/index.html.twig', ['posts' => $posts]);
+//        return $this->render('blog/index.html.twig', ['posts' => $posts]);
+        return ['posts' => $posts];
     }
 
     /**
