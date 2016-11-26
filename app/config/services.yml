@@ -16,6 +16,19 @@ services:
         tags:
             - { name: twig.extension }
 
+    app.locale_listener:
+        class: AppBundle\EventListener\LocaleListener
+        arguments: ['%kernel.default_locale%']
+        tags:
+            - { name: kernel.event_subscriber }
+
+    app.twig.multi_lang_extension:
+        class: AppBundle\Twig\MultiLangExtension
+        arguments: ['@translator.default', '%subLocale%']
+        tags:
+            - { name: twig.extension }
+
+
     app.twig.intl_extension:
         public: false
         class:  Twig_Extensions_Extension_Intl
